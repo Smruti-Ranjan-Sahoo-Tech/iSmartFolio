@@ -16,15 +16,25 @@ const { isLoggedIn } = require('./middlewere/authMiddleware')
 const app = express()
 
 // ✅ CORS setup (update with your frontend’s deployed URL later)
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "https://isfolio-resume.netlify.app",
+  "https://ismartfolio.netlify.app"
+];
+
 const corsOptions = {
-    origin: [
-        "http://localhost:5173", 
-        "http://localhost:5174",
-        "https://isfolio-resume.netlify.app",  
-        "https://ismartfolio.netlify.app"  
-    ],
-    credentials: true,
-}
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps, Postman)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+};
+
 app.use(cors(corsOptions))
 
 app.use(cookieParser())
