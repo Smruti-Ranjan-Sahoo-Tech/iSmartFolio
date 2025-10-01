@@ -82,7 +82,7 @@ class authController {
         // Set cookie
         res.cookie("token", token, {
             httpOnly: true,           // ✅ prevents JS access
-            secure: process.env.NODE_ENV === "production", // use HTTPS in prod
+            secure: true === "production", // use HTTPS in prod
             maxAge: 12 * 60 * 60 * 1000, // 12 hours
         });
 
@@ -119,7 +119,7 @@ class authController {
         // Clear cookie with same options as set
         res.clearCookie("token", {
             httpOnly: true,
-            secure: process.env.NODE_ENV === "production",
+            secure: true,
             sameSite: "lax",
         });
         return res.status(200).json({ success: true, message: "Logged out successfully" });

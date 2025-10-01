@@ -20,8 +20,8 @@ const corsOptions = {
     origin: [
         "http://localhost:5173", 
         "http://localhost:5174",
-        "https://isfolio-resume.netlify.app",  // change to actual deployed frontend
-        "https://ismartfolio.netlify.app"  // change to actual deployed frontend
+        "https://isfolio-resume.netlify.app",  
+        "https://ismartfolio.netlify.app"  
     ],
     credentials: true,
 }
